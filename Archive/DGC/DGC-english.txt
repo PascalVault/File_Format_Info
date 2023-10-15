@@ -1,0 +1,227 @@
+/////////////////////////////////////////////////// ////////////////////////////
+// DGCA(Digital G Codec Archiver) Version 1.0 //
+// //
+// Copyright (c) 2000-2006 SYN(Shin-ichi TSURUTA) All Rights Reserved. //
+/////////////////////////////////////////////////// ////////////////////////////
+
+
+●Introduction
+
+   Thank you for downloading "DGCA".
+   "DGCA" is designed with an emphasis on the balance between high compression ratio and expansion speed, ensuring the safety of archives.
+   This is a file compression program that has been pursued to the extreme.
+   In addition to general-purpose compression functions, it also creates customizable self-extracting files.
+   It can also be used to create simple installers.
+
+
+●File structure
+
+   After unpacking you will get the following files: Please check your configuration.
+
+         dgca.exe (program itself)
+         dgcac.exe (console application for Windows advanced users)
+         dgca.txt (the text file you are currently reading)
+         history.txt (update history)
+         Extension (extension DLL folder)
+         Language (folder for language files)
+         Sample (sample data folder)
+         Theme (screen customization folder)
+
+
+●Operating environment
+
+   Compatible with OS MS Windows95/98/Me/NT/2000/XP (Japanese version).
+           (For overseas versions of Windows, it may not work on anything other than 2000/XP)
+   Memory RAM 128MB or more recommended. (Lower than this may slow down)
+           (When HyperThreading is turned on, 256MB or more of RAM is recommended (planned))
+           Approximately 32MB is sufficient when expanding (64MB when using HyperThreading)
+
+
+●Execution method
+
+   Run dgca.exe.
+   When you run it for the first time, please configure the options first. command pro
+   If you are running a console application from a prompt, run dgcac.exe.
+   please. For instructions on how to use dgcac.exe, please refer to the messages at startup.
+
+●How to operate
+
+   【compression】
+   - Drag and drop files and folders into the DGCA window.
+   ・Select a file or folder from Explorer, etc., and select from the right-click menu.
+     Select DGCA from “Send”. (optional setting required)
+   ・Select files and folders using the viewer on DGCA and compress them using the menu or toolbar.
+     choice.
+
+   [Development]
+   ・Double-click the compressed file (.dgc). (requires association of option settings)
+   - Drag and drop the compressed file into the DGCA window.
+   ・Select the compressed file from Explorer etc. and select from the right-click menu.
+     Select DGCA from “Send”. (optional setting required)
+   ・Select the compressed file using the viewer on DGCA and select unpack from the menu or toolbar.
+     Choice.
+
+   【others】
+   ・Dividing and combining files is almost the same as compressing and expanding.
+
+   [Operations on the viewer]
+   -You can use the arrow keys on your keyboard. Left and right is the screen movement in dual screen mode.
+   Other keys are mostly the same as Explorer.
+   ・Ctrl+C copy
+   ・Ctrl+V Paste
+   ・Delete Put in trash
+   ・SHIFT+Delete Delete without putting it in the trash
+   ・F5 Update list
+   ・BS Move to the next higher folder
+   ・Enter Opens the file in the associated application
+                      If it is a compressed file, you will be able to view the internal file list.
+                      You can expand only the selected ones.
+   ・Left double click Same as Enter
+   ・Left click select
+   ・Right-click context menu
+
+
+●Explanation of setting items and terms
+
+   【command】
+   ·compression
+     Compress one or more files or folders into a single compressed file.
+
+   ・Development
+     Extract files and folders from compressed files and restore them.
+
+   ·Split
+     Split large files into specified sizes.
+
+   ・Join
+     Combine the split files and put them back together.
+
+   ・Verification
+     Checks whether the contents of a compressed file and a specific file or folder are the same.
+
+   ·inspection
+     Check the compressed file for any abnormalities.
+
+   ·protection
+     Adds information that can be used to repair the compressed file if it becomes slightly corrupted.
+     Therefore, the size will be slightly larger.
+
+   ·repair
+     Attempts to repair protected compressed files if they become corrupted. too much damage
+     cannot be repaired.
+
+   [Compression mode]
+   ・No compression
+     Archive files without compressing them. It's very fast. JPG or MP3
+     Since this data has already been compressed, select uncompressed when combining them.
+     It would be a good idea to choose.
+
+   ・File concatenation compression (SOLID mode)
+     This is the normal mode that compresses files and stores them in the archive.
+
+   [Output file format]
+   ・DGC format
+     It's a normal compressed file. Use DGCA when expanding (unzipping).
+
+   ・Self-expanding format
+     This is a format that allows you to extract the archive just by running the file. It increased by about 100Kbyte.
+     However, it is useful when giving a DGCA to someone who does not have it.
+
+   [Compression options]
+   ・Add repair information
+     After compression, we protect it.
+
+   ・Verification check after compression
+     After compression, the collation command is automatically executed and the original files are restored when the archive is expanded.
+     Check to see if it exactly matches the file.
+
+   ・Prioritize sameness
+     Folder timestamps etc. are not written to the archive.
+     Even if you unzip and recompress, the archives will be completely consistent at the binary level.
+     vinegar. This is a function for file sharing software that wants to match the hash values of archives.
+
+   ・Specification of uncompressed file extension
+     Files with the specified extension will not be compressed during the compression process. already compressed
+     processing will be faster. Also, archives are uncompressed for fast access.
+     Also specify this when there is a file you want to store.
+
+   [Self-deployment option details settings]
+   ・Hide window
+     Specify this when you do not want to display the Window during expansion.
+
+   ・Display file set name
+     Specify if you want to name the set of compressed files.
+     When you name it, the terminology changes from "deployment" to "installation."
+
+   ・Specify the installation destination
+     Specify this if you want to specify the default extraction location.
+
+   - Specify the file to open after extraction
+     After unpacking (installation), the specified file will be added to the associated application.
+     Click to open. Used to display README, etc.
+
+   - Specify the executable file and command to be launched after extraction
+     Use this when you want to start an executable file after unpacking (installation).
+
+   ・Specification of font size
+     Used when you want to specify the font size of the dialog.
+
+   【encryption】
+   ・Password specification
+     Encrypts using the specified string as a password.
+
+   ・Key file specification
+     Encrypts using the contents of the specified file.
+
+
+●Others
+
+   More detailed information and the latest information are available on the website. Please take a look if necessary.
+
+
+●Copyright
+
+   The copyright of "DGCA" is held by Shinichi Tsuruta.
+
+
+●Distribution and reprint conditions
+
+   "DGCA" is free software. Anyone can use it freely.
+   Distribution by individuals is free as long as they do not modify the archive file.
+   Please contact us in advance if you wish to distribute or reprint on the Internet, magazines, or other media.
+   Any reproduction or distribution of modified archive files without permission is strictly prohibited.
+
+
+●Disclaimer
+
+-The author does not guarantee the operation of this program.
+・The author is not responsible for any damage or damage caused directly or indirectly to the use of this program.
+   We do not take any responsibility.
+- The author has no obligation to modify or update this program.
+- Modification of this product is prohibited.
+- You may not modify or reuse the resources of this product by decompiling, disassembling, etc.
+   This is strictly prohibited.
+
+
+●Special Thanks
+
+・Everyone on 2channel Download board
+・Everyone on the 2channel software board
+・Everyone on the 2channel program technical board
+・To everyone on GCA and DGCA mailing list
+・To everyone who sent me an email personally.
+
+   We created this software based on the opinions, requests, support, and technical advice of many people.
+   I was able to. I would like to express my gratitude and respect to you.
+
+
+●Support and contact information
+
+   If you have any opinions, requests, bug reports, etc., please contact us below. as much as possible
+   We will take care of it.
+
+         E-mail: dgca@emit.jp
+         URL: http://www.emit.jp/
+
+
+/////////////////////////////////////////////////// ////////////////////////////
