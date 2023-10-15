@@ -1,0 +1,57 @@
+Lzip Manual
+This manual is for Lzip (version 1.23, 24 January 2022). 
+Copyright © 2008-2022 Antonio Diaz Diaz.
+
+This manual is free documentation: you have unlimited permission to copy, distribute, and modify it. 
+
+======================================================================
+
+Perfection is reached, not when there is no longer anything to add, but when there is no longer anything to take away.
+-- Antoine de Saint-Exupery
+
+
+In the diagram below, a box like this:
+
++---+
+|   | <-- the vertical bars might be missing
++---+
+
+represents one byte; a box like this:
+
++==============+
+|              |
++==============+
+
+represents a variable number of bytes.
+
+
+A lzip file consists of a series of independent "members" (compressed data sets). The members simply appear one after another in the file, with no additional information before, between, or after them. Each member can encode in compressed form up to 16 EiB - 1 byte of uncompressed data. The size of a multimember file is unlimited.
+
+Each member has the following structure:
+
++--+--+--+--+----+----+=============+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| ID string | VN | DS | LZMA stream | CRC32 |   Data size   |  Member size  |
++--+--+--+--+----+----+=============+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+All multibyte values are stored in little endian order.
+
+'ID string (the "magic" bytes)'
+    A four byte string, identifying the lzip format, with the value "LZIP" (0x4C, 0x5A, 0x49, 0x50).
+'VN (version number, 1 byte)'
+    Just in case something needs to be modified in the future. 1 for now.
+
+
+'DS (coded dictionary size, 1 byte)'
+    The dictionary size is calculated by taking a power of 2 (the base size) and subtracting from it a fraction between 0/16 and 7/16 of the base size.
+    Bits 4-0 contain the base 2 logarithm of the base size (12 to 29).
+    Bits 7-5 contain the numerator of the fraction (0 to 7) to subtract from the base size to obtain the dictionary size.
+    Example: 0xD3 = 2^19 - 6 * 2^15 = 512 KiB - 6 * 32 KiB = 320 KiB
+    Valid values for dictionary size range from 4 KiB to 512 MiB.
+'LZMA stream'
+    The LZMA stream, finished by an "End Of Stream" marker. Uses default values for encoder properties. See Stream format, for a complete description.
+'CRC32 (4 bytes)'
+    Cyclic Redundancy Check (CRC) of the original uncompressed data.
+'Data size (8 bytes)'
+    Size of the original uncompressed data.
+'Member size (8 bytes)'
+    Total size of the member, including header and trailer. This field acts as a distributed index, allows the verification of stream integrity, and facilitates the safe recovery of undamaged members from multimember files. Member size should be limited to 2 PiB to prevent the data size field from overflowing. 
